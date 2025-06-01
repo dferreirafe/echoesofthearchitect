@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://coabd72xoldgs"]
+
+[ext_resource type="Script" uid="uid://q6geepibly6x" path="res://Gameplay/Main Character/Scripts/puas.gd" id="1_07ar2"]
+[ext_resource type="Texture2D" uid="uid://d337m07vka7ux" path="res://Assets/Textures/BossEffect/Puas1.png" id="2_87lgk"]
+[ext_resource type="Texture2D" uid="uid://ok5y70b0a2as" path="res://Assets/Textures/BossEffect/Puas2.png" id="3_lcbh2"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_vwb7u"]
+size = Vector3(156.105, 600, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_87lgk"]
+blend_mode = 3
+
+[sub_resource type="QuadMesh" id="QuadMesh_lcbh2"]
+
+[node name="Puas" type="Area2D"]
+position = Vector2(508, 1940)
+script = ExtResource("1_07ar2")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
+modulate = Color(2, 2, 2, 1)
+position = Vector2(9, -295)
+rotation = -3.14159
+mesh = SubResource("PrismMesh_vwb7u")
+
+[node name="Puas1" type="Sprite2D" parent="."]
+modulate = Color(0.920963, 0.61306, 0.833414, 1)
+texture_filter = 1
+position = Vector2(12, -292)
+scale = Vector2(3.98, 3.98)
+texture = ExtResource("2_87lgk")
+
+[node name="Puas2" type="Sprite2D" parent="."]
+modulate = Color(7, 7, 7, 1)
+clip_children = 2
+texture_filter = 1
+position = Vector2(12, -292)
+scale = Vector2(3.98, 3.98)
+texture = ExtResource("3_lcbh2")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Puas2"]
+modulate = Color(0.889596, 0.0156247, 0, 1)
+material = SubResource("CanvasItemMaterial_87lgk")
+scale = Vector2(250, 250)
+mesh = SubResource("QuadMesh_lcbh2")

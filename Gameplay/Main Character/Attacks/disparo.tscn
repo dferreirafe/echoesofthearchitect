@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1u7gu25q4itn"]
+
+[ext_resource type="Script" uid="uid://b5ftdeyrlbj88" path="res://Gameplay/Main Character/Scripts/disparo.gd" id="1_yk6j1"]
+[ext_resource type="Texture2D" uid="uid://dm2p37cti7xjd" path="res://Assets/Textures/BossEffect/BolaFuego.png" id="2_svxof"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_vwb7u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqdos"]
+radius = 30.2655
+
+[node name="Disparo" type="Area2D"]
+script = ExtResource("1_yk6j1")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
+modulate = Color(0.801683, 0.00117189, 0.896684, 1)
+self_modulate = Color(2, 2, 2, 1)
+scale = Vector2(53.23, 53.23)
+mesh = SubResource("SphereMesh_vwb7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cqdos")
+debug_color = Color(0.795011, 0.425539, 0, 0)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(96, -1)
+
+[node name="BolaFuego" type="Sprite2D" parent="."]
+modulate = Color(5, 5, 5, 1)
+self_modulate = Color(1, 0.144368, 0.161477, 1)
+texture_filter = 1
+position = Vector2(1, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("2_svxof")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
