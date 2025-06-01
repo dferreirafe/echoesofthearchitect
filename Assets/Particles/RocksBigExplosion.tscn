@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c78b2hbx2ftq0"]
+[gd_scene load_steps=9 format=3 uid="uid://c78b2hbx2ftq0"]
+
+[ext_resource type="AudioStream" uid="uid://bn7ii2q44jnwu" path="res://Assets/Sounds/Explosion.wav" id="1_ql70h"]
 
 [sub_resource type="Gradient" id="Gradient_heiyw"]
 offsets = PackedFloat32Array(0, 0.736364)
@@ -52,5 +54,11 @@ explosiveness = 1.0
 fixed_fps = 60
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ocv6l")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ql70h")
+volume_db = 15.0
+autoplay = true
+bus = &"SFX"
 
 [connection signal="finished" from="." to="." method="queue_free"]

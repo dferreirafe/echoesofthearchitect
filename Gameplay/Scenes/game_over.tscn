@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb4nli34ynft6"]
+[gd_scene load_steps=7 format=3 uid="uid://cb4nli34ynft6"]
 
 [ext_resource type="Script" uid="uid://bowm48ilqexst" path="res://Gameplay/scripts/game_over.gd" id="1_a3b7r"]
 [ext_resource type="FontFile" uid="uid://di7otrb2nkbin" path="res://Assets/Fonts/Pixellari.ttf" id="1_xk84a"]
+[ext_resource type="AudioStream" uid="uid://ceyiq034la6vc" path="res://Assets/Music/Music3.wav" id="3_q6ebt"]
 
 [sub_resource type="Animation" id="Animation_ra0u3"]
 length = 0.001
@@ -93,6 +94,10 @@ text = "[center][wave]GAME OVER"
 visible_characters = 0
 visible_ratio = 0.0
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q6ebt")
+autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

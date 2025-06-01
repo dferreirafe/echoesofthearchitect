@@ -1,0 +1,203 @@
+~ start
+
+Heroe: Por fin... he llegado. Ante mí, [color=red]el último señor del caos.
+El arquitecto: Increíble. Has logrado superar a mis esbirros y trampas.
+El arquitecto: Debo admitirlo... llegar hasta aquí ya es un logro. No cualquiera lo consigue.
+El arquitecto: Pero ninguna de esas habilidades podrá siquiera rozarme.
+
+=> END
+
+~ dialogo_stage_01
+
+El arquitecto: ¿Tú otra vez? Ya te había asesinado... ¿cómo sigues con vida?
+El arquitecto: Bah, poco importa. Ya dejaste claro que no eres rival para un poder como el mío.
+Heroe: Sigue confiando en tu invulnerabilidad... será tu perdición.
+Heroe: Escucha bien, último señor del caos: no descansaré hasta verte caer.
+- Caer yo?
+	El arquitecto: ¿Caer yo? ¿De verdad piensas vencerme con tu nula habilidad?
+	
+- Vuelve tantas veces como quieras...
+	El arquitecto: Vuelve tantas veces como quieras, acabarás siempre de la misma forma.
+	
+
+=> END
+
+~ dialogo_stage_02
+
+El arquitecto: Otra vez tú...
+El arquitecto: Has vuelto a superar mis trampas y esbirros.
+El arquitecto: La última vez lograste [color=aqua]mejorar[/color], aunque aún no entiendo cómo.
+Heroe: Claro que mejoré. Y seguiré haciéndolo... hasta verte caer.
+Heroe: Hasta ver tu imperio reducido a cenizas.
+El arquitecto: No te hagas ilusiones, [shake rate=20 level=10]héroe de segunda.[/shake]
+El arquitecto: Por más que te esfuerces, apenas logras tocarme.
+
+=> END
+
+~ dialogo_stage_03
+
+El arquitecto: Ya es costumbre verte superar mis trampas y esbirros.
+El arquitecto: Incluso después de reforzar mi castillo...
+El arquitecto: Pero dime... ¿qué haces aquí? ¿Cuál es tu propósito, supuesto héroe?
+Heroe: ¿Mi propósito?
+Heroe: ¿Después de lo que has hecho? ¿DE LO QUE HICIERON? ¿Me preguntas eso?
+Heroe: Estoy aquí para ver tu imperio caer... y ser yo mismo quien lo derrumbe.
+El arquitecto: Vaya, qué valentía... qué majestuosa valentía. Pero eso no te salvará de tu destino.
+
+=> END
+
+~ dialogo_stage_04
+
+El arquitecto: Realmente te superas más y más. Estuve a punto de reconocerte... hasta que noté algo.
+El arquitecto: Estás vacío. Eres una carcasa sin alma... ¿una sombra?
+Heroe: Y si así fuera, último señor del caos... ¿qué importa?
+Heroe: No me digas que... ¿temes perder ante una simple sombra?
+
+=> END
+
+~ dialogo_stage_05
+
+El arquitecto: Aquí vamos otra vez.
+El arquitecto: Mueres y mueres, pero siempre regresas... más fuerte, con más conocimientos.
+Heroe: Esa es la clave: aprender, mejorar, evolucionar. Algo que tú jamás entenderás.
+Heroe: Tu muerte está cada vez más cerca.
+El arquitecto: Te seré sincero... eres sorprendente. Y misterioso.
+El arquitecto: Ni siquiera mi castillo... LA PROPIA EXTENSIÓN DE MI ALMA... logra contenerte.
+El arquitecto: Se nota que eres una sombra poderosa.
+El arquitecto: ¡PERO NO TE ENGAÑES! Eso no significa que tengas la más mínima oportunidad de vencerme.
+
+=> END
+
+~ dialogo_stage_06
+
+El arquitecto: Vuelves otra vez. Esto ya empieza a volverse repetitivo.
+El arquitecto: No lo negaré... hace tiempo no disfrutaba tanto de un reto, de un desafío. Pero también admito que empiezas a ser un problema.
+El arquitecto: Cada vez que vuelves... ya no eres el mismo. Tu energía se siente más y más perturbadora.
+Heroe: ¿Eso te asusta?
+Heroe: Te diré por qué: uvosotros habéis quebrado este mundo.
+Heroe: Yo soy una sombra... la sombra de tus miedos. La sombra del caos que sembraste. De las muertes que provocaste.
+Heroe: Todo ese caos ha reencarnado en mí... sólo para darte tu final.
+
+=> END
+
+~ dialogo_stage_07
+
+El arquitecto: Mmm... llegaste más rápido que antes. ¿Ya memorizaste las trampas?
+El arquitecto: No... debe haber algo más. ¿Acaso...?
+Heroe: ¿Pierdes control sobre tu propio castillo? ¿Sobre tu extensión del alma? Sí.
+Heroe: Porque ahora ves el resultado de tu caos. Ahora ves el destino que te espera, último señor del caos.
+El arquitecto: No... no es eso. Tiene que haber algo más allá. Otro motivo. No puede ser que tú... una simple sombra sin alma, estés logrando esto.
+
+=> END
+
+~ dialogo_stage_08
+
+El arquitecto: Algo ha cambiado. Esta vez no sólo has atravesado mis trampas...
+El arquitecto: ...las moldeaste. Las usaste en tu beneficio como si fueran tuyas.
+Heroe: Porque ya no soy sólo una sombra. Ahora soy parte del castillo.
+Heroe: Cada rincón que conquisto... cada trampa que supero... me convierte en algo más.
+Heroe: En aquello a lo que más temes... en ti.
+El arquitecto: No... no puede ser. ¡El castillo es mío! ¡Soy yo!
+El arquitecto: ¿Cómo puedes estar absorbiéndolo?
+
+=> END
+
+~ dialogo_stage_09
+
+El arquitecto: Ahora lo admito... he perdido el control de mi castillo.
+El arquitecto: Sombra sin alma, realmente te has convertido en un desafío. No puedo permitir que sigas evolucionando.
+Heroe: No te preocupes por fuerzas que no puedes controlar. Por más que lo intentes... no podrás detenerme.
+- Fuerzas que no controlo?
+	El arquitecto: ¿Fuerzas que no controlo? ¿A qué te refieres? ¿No vienes solo?
+	set Global.momento = "A"
+- Mira quién está de fanfarrón.
+	El arquitecto: Sombra sin alma... maldita sombra. Te aferras a una ilusión que jamás se cumplirá.
+	set Global.momento = "B"
+
+=> END
+
+~ dialogo_stage_010
+
+if Global.momento == "A":
+	El arquitecto: Así que era eso... hay otros seres. Fuerzas que desconozco. Fuera de mi alcance.
+	El arquitecto: Ellos son los responsables de que ya no controle mi castillo... de tu evolución constante.
+	El arquitecto: Entonces no eres el mismo ser que he enfrentado antes... eres la unión de almas y recuerdos de todas tus vidas pasadas.
+elif Global.momento == "B":
+	Heroe: Puedo sentir tu miedo. Pero no temes morir o perder...
+	Heroe: Temes que una sombra sin alma... te esté derrotando.
+
+=> END
+
+~ dialogo_stage_011
+
+if Global.momento == "A":
+	Heroe: ¿Sabes qué es lo mejor? No importa lo que sepas o no... seguiré evolucionando. Y te derrotaré.
+	- No importa, solo busco demostrar tu inutilidad.
+		El arquitecto: No importa. Solo quiero demostrar tu inutilidad. Que los seres que te dieron poder vean su incompetencia. Que no cambiarás nada.
+	- Da igual, solo necesito acabar con tus creadores.
+		El arquitecto: Sí... eso era.
+		El arquitecto: Terminé siendo prisionero de mi propio castillo. De mi propia alma.
+		El arquitecto: Encerrado en los pasillos que yo mismo diseñé...  
+		El arquitecto: En una cárcel viva que late al ritmo de mi arrogancia.  
+		El arquitecto: Pero tú... tú abriste una grieta.  
+		El arquitecto: Y por esa grieta, la verdad se ha filtrado como veneno.  
+		El arquitecto: Ahora, [shake rate=20 level=10]¡dile a tus creadores que voy de camino![/shake]  
+		El arquitecto: No escaparé de esta prisión... ¡la arrastraré conmigo hasta sus puertas!  
+		El arquitecto: Y cuando las sombras me sigan, no quedará trono ni dios en pie.
+		set Global.Final = "A"
+elif Global.momento == "B":
+	Heroe: No te preocupes. Seguiremos luchando... hasta el fin de los tiempos.  
+	Heroe: Si no puedo derrotarte, tú tampoco podrás derrotarme.  
+	Heroe: Esto es peor que una derrota, peor que el infierno: es un castigo eterno. Ni tú me verás caer... ni yo a ti.  
+	Heroe: Cada golpe será un eco. Cada caída, un reflejo de la anterior.  
+	Heroe: Seguiremos atrapados en este bucle... porque eso es lo que somos ahora: una sombra sin alma y un dios sin control.  
+	Heroe: Tú, encadenado a tu castillo. Yo, condenado a no morir jamás.  
+	Heroe: ¿Sabes qué es lo más cruel? Que con cada batalla... te entiendo más.  
+	Heroe: Y aun así, no siento compasión.  
+	Heroe: Solo vacío.  
+	set Global.Final = "C"
+
+=> END
+
+~ dialogo_stage_012
+
+if Global.momento == "A":
+	Heroe: Por fin... he llegado. Ante mí, [color=red]el último señor del caos.
+	El arquitecto: ¿Qué te sucedió?
+	El arquitecto: Espera... no puede ser.  
+	El arquitecto: Tus "fuerzas superiores", esas que no controlo... te han abandonado.  
+	El arquitecto: Ahora sí... eres solo una sombra sin alma. Sin propósito.  
+	Heroe: ¿Fuerzas...? No recuerdo nada de eso.  
+	Heroe: No recuerdo por qué estoy aquí. Ni quién soy.  
+	El arquitecto: ...  
+	Heroe: Solo sé que desperté... caminando entre ruinas. Avanzando sin rumbo.  
+	Heroe: Llegué hasta ti... pero no sé por qué.  
+	Heroe: No siento odio. Ni valor. Ni destino.  
+	Heroe: Solo... vacío.  
+	El arquitecto: Entonces... ya no eres mi enemigo.  
+	El arquitecto: Solo un eco... sin eco.  
+	Heroe: Tal vez. Pero incluso un eco... puede resonar en el abismo.  
+	Heroe: Aunque no sepa por qué.
+	set Global.Final = "B"
+
+=> END
+
+~ dialogo_derrota
+
+El arquitecto: ¿Perdí? ¿Cómo es posible...?  
+El arquitecto: ¿Derrotado por una simple sombra sin alma?  
+Heroe: No soy simple.  
+Heroe: Soy lo que queda cuando el tiempo ya no perdona.  
+Heroe: Soy el reflejo de cada vida que tomaste, cada reino que arrasaste, cada mundo que hiciste sangrar.  
+Heroe: Perdiste... porque este era tu destino.  
+Heroe: Y era mi destino poner fin a tu reinado.  
+Heroe: Todos habían caído... solo faltabas tú, último señor del caos.  
+El arquitecto: Entonces... esto es el final.  
+El arquitecto: La eternidad... reducida a cenizas por una sombra.  
+Heroe: No soy un héroe. No vine por gloria.  
+Heroe: Vine a cerrar el ciclo.  
+Heroe: Que este castillo sea tu tumba... y mi última huella.  
+Heroe: Adiós, Arquitecto.  
+set Global.Final = "D"
+
+=> END

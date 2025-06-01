@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1u7gu25q4itn"]
+[gd_scene load_steps=6 format=3 uid="uid://d1u7gu25q4itn"]
 
 [ext_resource type="Script" uid="uid://b5ftdeyrlbj88" path="res://Gameplay/Main Character/Scripts/disparo.gd" id="1_yk6j1"]
 [ext_resource type="Texture2D" uid="uid://dm2p37cti7xjd" path="res://Assets/Textures/BossEffect/BolaFuego.png" id="2_svxof"]
+[ext_resource type="Texture2D" uid="uid://n6rs7ilrvlwy" path="res://addons/kenney_particle_pack/light_02.png" id="3_bsp5k"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_vwb7u"]
 
@@ -33,5 +34,11 @@ texture_filter = 1
 position = Vector2(1, 0)
 scale = Vector2(3, 3)
 texture = ExtResource("2_svxof")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.958039, 0, 0.151085, 1)
+energy = 1.8
+texture = ExtResource("3_bsp5k")
+texture_scale = 0.55
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

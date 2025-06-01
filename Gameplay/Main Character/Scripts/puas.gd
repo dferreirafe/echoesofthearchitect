@@ -1,7 +1,10 @@
 extends Area2D
 
+@export var Hand = false
 
 func _ready() -> void:
+	if Hand == true:
+		return
 	var t = create_tween().set_trans(Tween.TRANS_CUBIC)
 	var t2 = create_tween().set_trans(Tween.TRANS_CUBIC)
 	t.tween_property(self, "position:y", 607, 0.5)

@@ -1,0 +1,131 @@
+[gd_scene load_steps=15 format=3 uid="uid://4jhmc84bec3d"]
+
+[ext_resource type="Script" uid="uid://b5ftdeyrlbj88" path="res://Gameplay/Main Character/Scripts/disparo.gd" id="1_sfo0j"]
+[ext_resource type="Texture2D" uid="uid://dm2p37cti7xjd" path="res://Assets/Textures/BossEffect/BolaFuego.png" id="2_3q70k"]
+[ext_resource type="Texture2D" uid="uid://kuwg5bkp4bd7" path="res://Assets/Textures/FireBall.png" id="2_djxqc"]
+[ext_resource type="Texture2D" uid="uid://n6rs7ilrvlwy" path="res://addons/kenney_particle_pack/light_02.png" id="3_djxqc"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_vwb7u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sfo0j"]
+radius = 104.12
+
+[sub_resource type="Animation" id="Animation_djxqc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3q70k"]
+resource_name = "loop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_djxqc"]
+_data = {
+&"RESET": SubResource("Animation_djxqc"),
+&"loop": SubResource("Animation_3q70k")
+}
+
+[sub_resource type="Gradient" id="Gradient_sfo0j"]
+colors = PackedColorArray(0.537287, 0.1066, 9.62615e-08, 1, 0.717139, 0.670128, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3q70k"]
+gradient = SubResource("Gradient_sfo0j")
+
+[sub_resource type="Curve" id="Curve_djxqc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.153846, 1), 0.0, 0.0, 0, 0, Vector2(0.698718, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_28h2m"]
+curve = SubResource("Curve_djxqc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8flxr"]
+lifetime_randomness = 0.45
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 201.2
+angle_min = -139.5
+angle_max = 1106.0
+gravity = Vector3(0, 0, 0)
+scale_min = 12.15
+scale_max = 53.65
+scale_curve = SubResource("CurveTexture_28h2m")
+color_ramp = SubResource("GradientTexture1D_3q70k")
+
+[node name="Disparo" type="Area2D"]
+collision_mask = 5
+script = ExtResource("1_sfo0j")
+destructible = false
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
+modulate = Color(0.761203, 0.0818562, 5.77569e-07, 1)
+self_modulate = Color(2, 2, 2, 1)
+position = Vector2(-1.23978e-05, 4.91142e-05)
+scale = Vector2(260.295, 258)
+mesh = SubResource("SphereMesh_vwb7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sfo0j")
+debug_color = Color(0.795011, 0.425539, 0, 0)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(96, -1)
+
+[node name="FireBall" type="Sprite2D" parent="."]
+modulate = Color(3, 3, 2, 1)
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_djxqc")
+offset = Vector2(-2, 3.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FireBall"]
+libraries = {
+&"": SubResource("AnimationLibrary_djxqc")
+}
+autoplay = "loop"
+
+[node name="BolaFuego" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(5, 5, 5, 1)
+self_modulate = Color(1, 0.144368, 0.161477, 1)
+texture_filter = 1
+position = Vector2(1, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("2_3q70k")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.958039, 0, 0.151085, 1)
+energy = 1.8
+texture = ExtResource("3_djxqc")
+texture_scale = 0.55
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(2.5, 2.5, 2.5, 1)
+amount = 190
+lifetime = 0.7
+visibility_rect = Rect2(-1000, -100, 2000, 206.65)
+process_material = SubResource("ParticleProcessMaterial_8flxr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

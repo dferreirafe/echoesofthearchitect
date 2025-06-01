@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=3 uid="uid://sgg2ib1aq0la"]
+
+[ext_resource type="Script" uid="uid://cix5y4dvvdel4" path="res://Gameplay/Scenes/Finales/final.gd" id="1_4fcod"]
+[ext_resource type="AudioStream" uid="uid://ceyiq034la6vc" path="res://Assets/Music/Music3.wav" id="2_32p14"]
+[ext_resource type="FontFile" uid="uid://dp6emwa1le7hg" path="res://Assets/Fonts/Breathe Fire.otf" id="2_nxrcc"]
+
+[sub_resource type="Animation" id="Animation_2i5di"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_c7rto"]
+resource_name = "Start"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.966667, 7.43333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a7otr"]
+_data = {
+&"RESET": SubResource("Animation_2i5di"),
+&"Start": SubResource("Animation_c7rto")
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
+layer = 128
+script = ExtResource("1_4fcod")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_a7otr")
+}
+autoplay = "Start"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_32p14")
+autoplay = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_top = 0.481481
+anchor_right = 0.999132
+anchor_bottom = 0.790123
+offset_top = 1.52588e-05
+theme_override_fonts/normal_font = ExtResource("2_nxrcc")
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "[center]Fin del juego"
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

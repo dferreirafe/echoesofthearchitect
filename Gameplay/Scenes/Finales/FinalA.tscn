@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=3 uid="uid://cuomb01dus243"]
+
+[ext_resource type="FontFile" uid="uid://dp6emwa1le7hg" path="res://Assets/Fonts/Breathe Fire.otf" id="1_2i5di"]
+[ext_resource type="Script" uid="uid://cix5y4dvvdel4" path="res://Gameplay/Scenes/Finales/final.gd" id="1_a7otr"]
+[ext_resource type="AudioStream" uid="uid://dg3taqf6gtybm" path="res://Assets/Sounds/castle door.wav" id="3_qqgkm"]
+
+[sub_resource type="Animation" id="Animation_2i5di"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_c7rto"]
+resource_name = "Start"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.966667, 7.43333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a7otr"]
+_data = {
+&"RESET": SubResource("Animation_2i5di"),
+&"Start": SubResource("Animation_c7rto")
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
+layer = 128
+script = ExtResource("1_a7otr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_a7otr")
+}
+autoplay = "Start"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_top = 0.294753
+anchor_right = 0.999132
+anchor_bottom = 0.790123
+offset_top = 1.52588e-05
+theme_override_fonts/normal_font = ExtResource("1_2i5di")
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "[center]Tras descubrir la verdad, el último Señor del Caos destruyó su castillo, su alma y su prisión, decidido a enfrentarse cara a cara con los Creadores. 
+Pero esa... es otra historia."
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="RichTextLabel"]
+stream = ExtResource("3_qqgkm")
+volume_db = 1.719
+autoplay = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,6 @@
+sonidos:
+	musket_fire_5.wav by J8054 -- https://freesound.org/s/648754/ -- License: Attribution 4.0
+	constant spray fire 1 by Nic3_one -- https://freesound.org/s/166542/ -- License: Creative Commons 0
+	Explosion 11 by LiamG_SFX -- https://freesound.org/s/322485/ -- License: Attribution NonCommercial 4.0
+	Slash1.ogg by wesleyextreme_gamer -- https://freesound.org/s/574821/ -- License: Creative Commons 0
+	hit - metallic - cage 01.wav by Anthousai -- https://freesound.org/s/406494/ -- License: Creative Commons 0
