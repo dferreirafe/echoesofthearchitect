@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://idt0d0pnsaj6"]
+
+[sub_resource type="Gradient" id="Gradient_ra0u3"]
+colors = PackedColorArray(0.788819, 0.725635, 0, 1, 0.814853, 0, 0.020318, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_185a3"]
+gradient = SubResource("Gradient_ra0u3")
+
+[sub_resource type="Curve" id="Curve_180o4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.404412, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_td4qv"]
+curve = SubResource("Curve_180o4")
+
+[sub_resource type="Curve" id="Curve_v2bil"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0147059, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_6mxxd"]
+curve = SubResource("Curve_v2bil")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y3dn3"]
+lifetime_randomness = 0.51
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 71.55
+angle_min = -484.5
+angle_max = 417.5
+direction = Vector3(0, -50, 0)
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 350.0
+radial_accel_max = 350.0
+radial_accel_curve = SubResource("CurveTexture_td4qv")
+scale_min = 25.45
+scale_max = 45.8
+scale_curve = SubResource("CurveTexture_6mxxd")
+color_ramp = SubResource("GradientTexture1D_185a3")
+
+[node name="RocksExplosion" type="GPUParticles2D"]
+emitting = false
+amount = 32
+lifetime = 1.5
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_y3dn3")
+
+[connection signal="finished" from="." to="." method="queue_free"]

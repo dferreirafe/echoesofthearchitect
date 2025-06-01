@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://coabd72xoldgs"]
+[gd_scene load_steps=8 format=3 uid="uid://coabd72xoldgs"]
 
 [ext_resource type="Script" uid="uid://q6geepibly6x" path="res://Gameplay/Main Character/Scripts/puas.gd" id="1_07ar2"]
 [ext_resource type="Texture2D" uid="uid://d337m07vka7ux" path="res://Assets/Textures/BossEffect/Puas1.png" id="2_87lgk"]
@@ -12,8 +12,14 @@ blend_mode = 3
 
 [sub_resource type="QuadMesh" id="QuadMesh_lcbh2"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_87lgk"]
+radius = 28.0
+height = 492.0
+
 [node name="Puas" type="Area2D"]
 position = Vector2(508, 1940)
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_07ar2")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
@@ -43,3 +49,13 @@ modulate = Color(0.889596, 0.0156247, 0, 1)
 material = SubResource("CanvasItemMaterial_87lgk")
 scale = Vector2(250, 250)
 mesh = SubResource("QuadMesh_lcbh2")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(18, -233)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13, -240)
+shape = SubResource("CapsuleShape2D_87lgk")
+debug_color = Color(0.991026, 0, 0.2709, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

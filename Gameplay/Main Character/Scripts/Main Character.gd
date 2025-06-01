@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+signal UsePuas
+
 @onready var Animations: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite_2d: AnimatedSprite2D = $Body/AnimatedSprite2D
 @onready var marker_puas: Marker2D = $Body/marker_puas
@@ -12,7 +15,7 @@ extends CharacterBody2D
 
 
 enum STATES {
-	MOVEMENT, ATTACK
+	MOVEMENT, ATTACK, HITTING
 }
 
 var current_state = STATES.MOVEMENT
@@ -32,7 +35,6 @@ func _physics_process(delta: float) -> void:
 
 			if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 				velocity.y = jump_force
-
 
 			var direction := Input.get_axis("ui_left", "ui_right")
 			if direction:
@@ -58,6 +60,7 @@ func _physics_process(delta: float) -> void:
 				current_state = STATES.ATTACK
 				if is_on_floor():
 					Animations.play("Attack2")
+					emit_signal("UsePuas")
 				else:
 					Animations.play("Attack2", -1 , 2.0)
 				
@@ -65,8 +68,8 @@ func _physics_process(delta: float) -> void:
 			velocity.x = 0
 			velocity.y = 0
 			
-			
-
+		STATES.HITTING:
+			velocity.x = 0.0
 	move_and_slide()
 	$Body/AnimatedSprite2D2.animation = animated_sprite_2d.animation
 	$Body/AnimatedSprite2D2.frame = animated_sprite_2d.frame
@@ -89,3 +92,18 @@ func Special_Attack():
 			c.global_position = i.global_position
 			c.global_rotation_degrees = i.global_rotation_degrees
 			get_parent().call_deferred("add_child", c)
+
+func Hit():
+	$Body/AreaAttack/CollisionShape2D.set_deferred("disabled", true)
+	$HitAnim.play("Hit")
+	current_state = STATES.HITTING
+	var c = preload("res://Assets/Particles/particles_damage.tscn").instantiate()
+	c.global_position = global_position
+	get_parent().call_deferred("add_child", c)
+	c.restart()
+	await get_tree().create_timer(0.15).timeout
+	current_state = STATES.MOVEMENT	
+
+func attack_hero(body: Node2D) -> void:
+	if body.has_method("Hit"):
+		body.Hit()

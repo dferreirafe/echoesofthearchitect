@@ -9,6 +9,7 @@
 radius = 30.2655
 
 [node name="Disparo" type="Area2D"]
+collision_mask = 5
 script = ExtResource("1_yk6j1")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]

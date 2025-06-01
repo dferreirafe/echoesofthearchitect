@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0gwky175q2hx"]
+
+[sub_resource type="Curve" id="Curve_xyx0r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.443182, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ixknr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.113636, 1), 0.0, 0.0, 0, 0, Vector2(0.664773, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="ParticlesDamage" type="CPUParticles2D"]
+modulate = Color(2.5, 2.5, 2.5, 1)
+self_modulate = Color(3, 3, 3, 1)
+emitting = false
+amount = 28
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.76
+emission_shape = 1
+emission_sphere_radius = 8.75
+gravity = Vector2(0, 0)
+radial_accel_min = 1912.2
+radial_accel_max = 2449.05
+radial_accel_curve = SubResource("Curve_xyx0r")
+angle_min = -1165.0
+angle_max = 1559.0
+scale_amount_min = 3.7
+scale_amount_max = 5.15
+scale_amount_curve = SubResource("Curve_ixknr")
+
+[connection signal="finished" from="." to="." method="queue_free"]
