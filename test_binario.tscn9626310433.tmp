@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgf7j0uchon42"]
+
+[sub_resource type="GDScript" id="GDScript_wvw7a"]
+resource_name = "test"
+script/source = "extends Control
+
+var numero = 100
+
+func _ready() -> void:
+	var numtext = str(numero)
+	var numero_decimal :String
+	
+	for i in numtext.length():
+		var num = numtext[i].to_int()
+		num *= (2 ** i)
+		numero_decimal += str(num)
+	
+	print(numero_decimal)
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_wvw7a")

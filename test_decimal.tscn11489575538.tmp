@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckwk6li2cx53s"]
+
+[sub_resource type="GDScript" id="GDScript_wvw7a"]
+resource_name = "test"
+script/source = "extends Control
+
+var numero :float = 69
+
+func _ready() -> void:
+	var numtext :String
+	var residuos :Array
+	
+	while true:
+		if int(numero) <= 0:
+			break
+		numero /= 2
+		#var n = numero
+		var decimal int(abs(numero - int(numero)) * 10) == 0:
+
+		var r 
+
+	for i in residuos:
+		numtext += str(i)
+	
+	print(numtext)
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_wvw7a")
