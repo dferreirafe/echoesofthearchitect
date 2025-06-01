@@ -23,4 +23,4 @@ func _on_body_entered(body: Node2D) -> void:
 	d.restart()
 	queue_free()
 	if body.has_method("Hit"):
-		body.Hit()
+		body.Hit(15)

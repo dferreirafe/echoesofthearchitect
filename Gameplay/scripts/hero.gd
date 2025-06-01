@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $Body/AnimatedSprite2D
 @onready var anim_hit: AnimationPlayer = $AnimHit
 @onready var collision_shape_2d: CollisionShape2D = $Body/Area2D/CollisionShape2D
+@onready var progress_bar: ProgressBar = $CanvasLayer/ProgressBar
 
 
 var learning = ["Dash", "Corte", "CorteDobleSalto", "DashPuas"]
@@ -13,8 +14,12 @@ var learning = ["Dash", "Corte", "CorteDobleSalto", "DashPuas"]
 @export var jump_force = -850.0
 @export var target :CharacterBody2D
 
+
+var Health = 150
+var force_damage = 3.5
+
 enum STATES {
-	MOVEMENT, IDLE, ATTACK, DASH, HIT
+	MOVEMENT, IDLE, ATTACK, DASH, HIT, DEATH
 }
 
 var current_state = STATES.MOVEMENT
@@ -25,6 +30,10 @@ var timing_attack = 0.0
 var time_attack_max = 0.25
 
 func _ready() -> void:
+	learning = Global.hero["learning"]
+	Health = Global.hero["health"]
+	force_damage = Global.hero["force"]
+	progress_bar.max_value = Health
 	target.UsePuas.connect(react_puas)
 
 
@@ -45,7 +54,7 @@ func react_puas():
 					velocity.x = 0.0
 
 func _physics_process(delta: float) -> void:
-	
+	progress_bar.value = Health
 	timing_attack += delta
 	
 	if not is_on_floor():
@@ -107,7 +116,9 @@ func _physics_process(delta: float) -> void:
 
 		STATES.HIT:
 			pass
-	
+		
+		STATES.DEATH:
+			velocity.x = 0.0
 	
 	move_and_slide()
 
@@ -126,7 +137,11 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		collision_shape_2d.set_deferred("disabled", true)
 
 
-func Hit():
+func Hit(force = 10.0):
+	if current_state == STATES.DEATH:
+		return
+	
+	Health -= force
 	velocity.x = 0
 	velocity.y = 0
 	current_state = STATES.HIT
@@ -136,12 +151,30 @@ func Hit():
 	c.global_position = global_position
 	get_parent().call_deferred("add_child", c)
 	c.restart()
+	if Health <= 0:
+		set_physics_process(false)
+		animated_sprite_2d.play("Death")
+		current_state = STATES.DEATH
+		Global.hero["health"] += 85
+		Global.hero["force"] += 2.5
+		var learnings_nexts =  ["Dash", "Corte", "CorteDobleSalto", "DashPuas"]
+		if Global.hero["learning"].size() >= learnings_nexts.size():
+			var game_over = preload("res://Gameplay/Scenes/game_win.tscn").instantiate()
+			get_parent().call_deferred("add_child", game_over)
+			return
+		else:
+			Global.hero["learning"].append(learnings_nexts[Global.hero["learning"].size()])
+		await get_tree().create_timer(1.0).timeout
+		$"../Win/AnimationPlayer".play("End")
+		
 	
 
 func _on_anim_hit_animation_finished(anim_name: StringName) -> void:
+	if current_state == STATES.DEATH:
+		return
 	current_state = STATES.MOVEMENT
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("Hit"):
-		body.Hit()
+		body.Hit(force_damage)

@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="The Hero Algorithm"
-run/main_scene="uid://bx0541qc7g2bc"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://Gameplay/scripts/Global.gd"
 
 [display]
 

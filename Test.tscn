@@ -1,4 +1,4 @@
-[gd_scene load_steps=180 format=4 uid="uid://bx0541qc7g2bc"]
+[gd_scene load_steps=196 format=4 uid="uid://bx0541qc7g2bc"]
 
 [ext_resource type="Texture2D" uid="uid://c37noyuhh0isq" path="res://Assets/Textures/Boss/Attack1.png" id="1_8tn2x"]
 [ext_resource type="Texture2D" uid="uid://c024gt7u4oqvh" path="res://Assets/Textures/Boss/Idle.png" id="1_myinc"]
@@ -19,15 +19,18 @@
 [ext_resource type="Texture2D" uid="uid://cdksheowhknnl" path="res://Assets/Textures/BossEffect/Run.png" id="15_nm833"]
 [ext_resource type="Texture2D" uid="uid://buqehm8vm8v35" path="res://Assets/Textures/BossEffect/Take hit.png" id="16_xyx0r"]
 [ext_resource type="Script" uid="uid://dquo7oanyvg3n" path="res://Gameplay/scripts/camera_shake.gd" id="18_iw7q2"]
+[ext_resource type="FontFile" uid="uid://di7otrb2nkbin" path="res://Assets/Fonts/Pixellari.ttf" id="18_ixknr"]
 [ext_resource type="Texture2D" uid="uid://v7jw51e2b5kk" path="res://addons/kenney_particle_pack/smoke_07.png" id="20_ctmup"]
 [ext_resource type="Texture2D" uid="uid://cmrvne3ao4jjv" path="res://Assets/Textures/adventurer-Sheet.png" id="21_nm833"]
 [ext_resource type="Script" uid="uid://bfm08riuay3e2" path="res://Gameplay/scripts/hero.gd" id="21_xyx0r"]
+[ext_resource type="Script" uid="uid://cky1axpx6epyr" path="res://Gameplay/scripts/win.gd" id="24_egg54"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ctmup"]
 blend_mode = 1
 
 [sub_resource type="Environment" id="Environment_vwb7u"]
 background_mode = 3
+background_canvas_max_layer = 3
 glow_enabled = true
 glow_intensity = 1.1
 glow_strength = 1.38
@@ -1102,23 +1105,15 @@ _data = {
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ixknr"]
 polygon = PackedVector2Array(-2, -38, -12, -37, -22, -25, -25, 3, -22, 66, -16, 89, -8, 96, 4, 100, 15, 87, 17, 53, 14, -18, 9, -33, 1, -37)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xyx0r"]
-polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyx0r"]
+bg_color = Color(0.319334, 0.0359312, 0.0963135, 1)
+border_width_bottom = 8
+border_color = Color(0.165875, 0.0242787, 0.0298662, 1)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vwb7u"]
-texture = ExtResource("9_c4vo5")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-0:0/0/modulate = Color(0, 0, 0, 1)
-0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_xyx0r")
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
-
-[sub_resource type="TileSet" id="TileSet_cqdos"]
-tile_size = Vector2i(128, 128)
-occlusion_layer_0/light_mask = 1
-occlusion_layer_0/sdf_collision = true
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_vwb7u")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixknr"]
+bg_color = Color(1, 0.0367387, 0.0480255, 1)
+border_width_bottom = 8
+border_color = Color(0.604499, 0, 0.0493707, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6wa1p"]
 radius = 13.0
@@ -1199,6 +1194,26 @@ region = Rect2(150, 111, 50, 37)
 [sub_resource type="AtlasTexture" id="AtlasTexture_yy4sb"]
 atlas = ExtResource("21_nm833")
 region = Rect2(200, 111, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d5pk"]
+atlas = ExtResource("21_nm833")
+region = Rect2(50, 333, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6ukb"]
+atlas = ExtResource("21_nm833")
+region = Rect2(100, 333, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh0nj"]
+atlas = ExtResource("21_nm833")
+region = Rect2(150, 333, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufffw"]
+atlas = ExtResource("21_nm833")
+region = Rect2(200, 333, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqgh3"]
+atlas = ExtResource("21_nm833")
+region = Rect2(250, 333, 50, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0j1t0"]
 atlas = ExtResource("21_nm833")
@@ -1329,6 +1344,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5d5pk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6ukb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh0nj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufffw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqgh3")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0j1t0")
 }, {
 "duration": 1.0,
@@ -1422,6 +1457,34 @@ _data = {
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_egg54"]
 polygon = PackedVector2Array(0, -27, -9, -20, -12, 1, -14, 27, -12, 45, -8, 49, 2, 54, 11, 48, 18, 36, 14, -18)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egg54"]
+bg_color = Color(0.0787108, 0.0732795, 0.335339, 1)
+border_width_bottom = 8
+border_color = Color(0.00660012, 0.0684249, 0.210932, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3qia"]
+bg_color = Color(0.398501, 0.471678, 1, 1)
+border_width_bottom = 8
+border_color = Color(0.389372, 0.00194044, 0.744664, 1)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xyx0r"]
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vwb7u"]
+texture = ExtResource("9_c4vo5")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/modulate = Color(0, 0, 0, 1)
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_xyx0r")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[sub_resource type="TileSet" id="TileSet_cqdos"]
+tile_size = Vector2i(128, 128)
+occlusion_layer_0/light_mask = 1
+occlusion_layer_0/sdf_collision = true
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_vwb7u")
+
 [sub_resource type="Curve" id="Curve_5d5pk"]
 _limits = [-200.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -1444,6 +1507,138 @@ collision_mode = 1
 collision_friction = 0.44
 collision_bounce = 0.0
 collision_use_scale = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ixknr"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_185a3"]
+resource_name = "End"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.566667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_restart"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ra0u3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bg4i3"]
+resource_name = "Start"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.666667, 0.7, 1.33333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1e-05, 1e-05), Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.26667, 1.73333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.26667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_185a3"]
+_data = {
+&"End": SubResource("Animation_185a3"),
+&"RESET": SubResource("Animation_ra0u3"),
+&"Start": SubResource("Animation_bg4i3")
+}
 
 [node name="Node2D" type="Node2D"]
 
@@ -1570,6 +1765,108 @@ libraries = {
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Boss"]
 occluder = SubResource("OccluderPolygon2D_ixknr")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Boss"]
+
+[node name="ProgressBar" type="ProgressBar" parent="Boss/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.0347222
+anchor_top = 0.0632716
+anchor_right = 0.528646
+anchor_bottom = 0.104938
+theme_override_styles/background = SubResource("StyleBoxFlat_xyx0r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ixknr")
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Boss/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.0407986
+anchor_top = 0.029321
+anchor_right = 0.213542
+anchor_bottom = 0.0848765
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.574)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("18_ixknr")
+theme_override_font_sizes/font_size = 35
+text = "El Arquitecto"
+metadata/_edit_use_anchors_ = true
+
+[node name="Hero" type="CharacterBody2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(187, 504)
+collision_layer = 4
+script = ExtResource("21_xyx0r")
+jump_force = -1100.0
+target = NodePath("../Boss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero"]
+position = Vector2(1, 13)
+shape = SubResource("CapsuleShape2D_6wa1p")
+debug_color = Color(0, 0.6, 0.7, 0)
+
+[node name="Body" type="Node2D" parent="Hero"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hero/Body"]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_doo2v")
+animation = &"Death"
+frame = 4
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="Hero/Body"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero/Body/Area2D"]
+position = Vector2(57, 5)
+shape = SubResource("CircleShape2D_xyx0r")
+disabled = true
+debug_color = Color(1, 0.013, 0.014, 0)
+
+[node name="AnimHit" type="AnimationPlayer" parent="Hero"]
+libraries = {
+&"": SubResource("AnimationLibrary_egg54")
+}
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Hero"]
+occluder = SubResource("OccluderPolygon2D_egg54")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Hero"]
+
+[node name="ProgressBar" type="ProgressBar" parent="Hero/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.6875
+anchor_top = 0.91358
+anchor_right = 0.978299
+anchor_bottom = 0.955247
+theme_override_styles/background = SubResource("StyleBoxFlat_egg54")
+theme_override_styles/fill = SubResource("StyleBoxFlat_f3qia")
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Hero/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.888021
+anchor_top = 0.875
+anchor_right = 0.973958
+anchor_bottom = 0.930556
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.574)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("18_ixknr")
+theme_override_font_sizes/font_size = 35
+text = "Heroe"
+metadata/_edit_use_anchors_ = true
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 z_index = 1
 scale = Vector2(0.4, 0.4)
@@ -1595,46 +1892,6 @@ scale_amount_min = 0.9
 scale_amount_max = 1.4
 color = Color(0.285905, 0.175275, 0.966916, 0.034)
 
-[node name="Hero" type="CharacterBody2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(187, 504)
-collision_layer = 4
-script = ExtResource("21_xyx0r")
-jump_force = -1100.0
-target = NodePath("../Boss")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero"]
-position = Vector2(1, 13)
-shape = SubResource("CapsuleShape2D_6wa1p")
-debug_color = Color(0, 0.6, 0.7, 0)
-
-[node name="Body" type="Node2D" parent="Hero"]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hero/Body"]
-texture_filter = 1
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_doo2v")
-animation = &"Corte"
-frame = 5
-frame_progress = 1.0
-
-[node name="Area2D" type="Area2D" parent="Hero/Body"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero/Body/Area2D"]
-position = Vector2(57, 5)
-shape = SubResource("CircleShape2D_xyx0r")
-disabled = true
-debug_color = Color(1, 0.013, 0.014, 0)
-
-[node name="AnimHit" type="AnimationPlayer" parent="Hero"]
-libraries = {
-&"": SubResource("AnimationLibrary_egg54")
-}
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Hero"]
-occluder = SubResource("OccluderPolygon2D_egg54")
-
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 visible = false
 modulate = Color(0.396889, 0.396889, 0.396889, 1)
@@ -1646,6 +1903,49 @@ process_material = SubResource("ParticleProcessMaterial_xyx0r")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(640, 543)
+
+[node name="Win" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("24_egg54")
+
+[node name="ColorRect" type="ColorRect" parent="Win"]
+material = SubResource("CanvasItemMaterial_ixknr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Win"]
+libraries = {
+&"": SubResource("AnimationLibrary_185a3")
+}
+autoplay = "Start"
+
+[node name="Control" type="Control" parent="Win"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Win/Control"]
+layout_mode = 0
+offset_left = -381.0
+offset_top = -153.0
+offset_right = 400.0
+offset_bottom = 189.0
+theme_override_fonts/font = ExtResource("18_ixknr")
+theme_override_font_sizes/font_size = 250
+text = "START"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="Boss/Body/AreaAttack" to="Boss" method="attack_hero"]
 [connection signal="animation_finished" from="Boss/AnimationPlayer" to="Boss" method="_on_animation_player_animation_finished"]

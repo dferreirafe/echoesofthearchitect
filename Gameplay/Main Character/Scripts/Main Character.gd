@@ -7,12 +7,14 @@ signal UsePuas
 @onready var animated_sprite_2d: AnimatedSprite2D = $Body/AnimatedSprite2D
 @onready var marker_puas: Marker2D = $Body/marker_puas
 @onready var markers_disparos: Node2D = $Body/markersDisparos
+@onready var progress_bar: ProgressBar = $CanvasLayer/ProgressBar
 
 @onready var body: Node2D = $Body
 
 @export var speed = 500.0
 @export var jump_force = -1200.0
 
+var Health = 500.0
 
 enum STATES {
 	MOVEMENT, ATTACK, HITTING
@@ -21,12 +23,13 @@ enum STATES {
 var current_state = STATES.MOVEMENT
 
 func _ready() -> void:
+	progress_bar.max_value = Health
 	for i in markers_disparos.get_children():
 		i.hide()
 
 func _physics_process(delta: float) -> void:
 	
-	
+	progress_bar.value = Health
 	match current_state:
 		STATES.MOVEMENT:
 			if not is_on_floor():
@@ -93,7 +96,8 @@ func Special_Attack():
 			c.global_rotation_degrees = i.global_rotation_degrees
 			get_parent().call_deferred("add_child", c)
 
-func Hit():
+func Hit(force := 5.0):
+	Health -= force
 	$Body/AreaAttack/CollisionShape2D.set_deferred("disabled", true)
 	$HitAnim.play("Hit")
 	current_state = STATES.HITTING
@@ -102,7 +106,10 @@ func Hit():
 	get_parent().call_deferred("add_child", c)
 	c.restart()
 	await get_tree().create_timer(0.15).timeout
-	current_state = STATES.MOVEMENT	
+	current_state = STATES.MOVEMENT
+	if Health <= 0:
+		var game_over = preload("res://Gameplay/Scenes/game_over.tscn").instantiate()
+		get_parent().call_deferred("add_child", game_over)
 
 func attack_hero(body: Node2D) -> void:
 	if body.has_method("Hit"):
